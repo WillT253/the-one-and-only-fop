@@ -32,4 +32,4 @@ chmod +x the-one-and-only-fop # Add execute permissions to the script
 
 echo "The script has been successfully installed."
 echo "Run it using $INSTALL_DIR/the-one-and-only-fop or manually add it to your \$PATH."
-echo "(Hint: your $PATH variable is usually set in \$HOME/.bashrc or a similar file.)"
+echo "(Hint: your \$PATH variable is usually set in \$HOME/.bashrc or a similar file.)"
