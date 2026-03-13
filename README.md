@@ -8,7 +8,7 @@ Seriously, that's it. Enjoy.
 ## Installation
 There are two ways to install the script. The first, and easiest, is to use the provided install script:
 
-    curl github.com/WillT253/the-one-and-only-fop/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/WillT253/the-one-and-only-fop/main/install.sh | bash
 
 Please read the install script file before running this command to ensure you're happy with what it will do.
 
