@@ -2,7 +2,7 @@
 
 # Configuration
 REPO_URL="https://github.com/WillT253/the-one-and-only-fop.git"
-INSTALL_DIR="$HOME/the-one-and-only-fop"
+INSTALL_DIR="$HOME/.the-one-and-only-fop"
 BIN_DIR="/usr/local/bin"
 SCRIPT_NAME="the-one-and-only-fop"
 COMMAND_NAME="the-one-and-only-fop" # Added this definition because I'm inconsistent with naming and also lazy
@@ -11,10 +11,10 @@ echo "Starting installation..."
 
 # Clone or Update the Repository
 if [ -d "$INSTALL_DIR/.git" ]; then
-  echo "Directory ~/the-one-and-only-fop exists. Pulling latest changes..."
+  echo "Directory ~/.the-one-and-only-fop exists. Pulling latest changes..."
   git -C "$INSTALL_DIR" pull
 else
-  echo "Cloning repository to ~/the-one-and-only-fop..."
+  echo "Cloning repository to ~/.the-one-and-only-fop..."
   git clone "$REPO_URL" "$INSTALL_DIR"
 fi
 
