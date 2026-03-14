@@ -1,35 +1,31 @@
 #!/bin/bash
 
-# This script aims to clone the repo and add it to a directory in $PATH.
-# Ensure you read this fully to ensure you know what this script does before running it.
+# Configuration
+REPO_URL="https://github.com/WillT253/the-one-and-only-fop.git"
+INSTALL_DIR="$HOME/the-one-and-only-fop"
+BIN_DIR="/usr/local/bin"
+SCRIPT_NAME="the-one-and-only-fop"
+COMMAND_NAME="the-one-and-only-fop" # Added this definition because I'm inconsistent with naming and also lazy
 
-set -e # ensure the script fails if any part of it goes wrong
+echo "Starting installation..."
 
-# Logic for cloning/updating and checking git is installed (L8-29)
-REPO_URL="https://github.com/WillT253/the-one-and-only-fop"
-INSTALL_DIR="$HOME/bin/.the-one-and-only-fop"
-
-echo "Installing to $INSTALL_DIR..."
-
-if command -v git &>/dev/null; then
-    if [ -d "$INSTALL_DIR" ]; then
-        echo "Directory exists. Updating..."
-        cd "$INSTALL_DIR"
-        git pull
-    else
-        git clone "$REPO_URL" "$INSTALL_DIR"
-        cd "$INSTALL_DIR"
-    fi
-    TARGET_DIR="$INSTALL_DIR"
+# Clone or Update the Repository
+if [ -d "$INSTALL_DIR/.git" ]; then
+  echo "Directory ~/the-one-and-only-fop exists. Pulling latest changes..."
+  git -C "$INSTALL_DIR" pull
 else
-     echo "Git is not installed on this device. Please install before running this script."
-     exit 1
+  echo "Cloning repository to ~/the-one-and-only-fop..."
+  git clone "$REPO_URL" "$INSTALL_DIR"
 fi
 
-cd "$TARGET_DIR"
+# Ensure the script is executable
+chmod +x "$INSTALL_DIR/$SCRIPT_NAME"
 
-chmod +x the-one-and-only-fop # Add execute permissions to the script
+# Create the Symlink (Requires sudo)
+echo "The installer is about to symlink the program to $BIN_DIR. This requires elevated permissions."
+echo "   You may be prompted for your sudo password now."
 
-echo "The script has been successfully installed."
-echo "Run it using $INSTALL_DIR/the-one-and-only-fop or manually add it to your \$PATH."
-echo "(Hint: your \$PATH variable is usually set in \$HOME/.bashrc or a similar file.)"
+sudo ln -sf "$INSTALL_DIR/$SCRIPT_NAME" "$BIN_DIR/$COMMAND_NAME"
+
+echo "Installation complete!"
+echo "You can now run $COMMAND_NAME."
